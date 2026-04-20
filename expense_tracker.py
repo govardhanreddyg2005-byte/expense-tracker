@@ -71,3 +71,16 @@ while True:
                 break
             except CategoryNameError as e:
                 print(e)
+
+        while True:
+            try:
+                Date = datetime.strftime(datetime.strptime(input('Enter date format like (YY-MM-DD):'),'%Y-%m-%d'),'%Y-%m-%d')  #Handles Datetime Format
+                Amount = int(input('Enter amount you spend:')) #Handles Amount
+                break
+            except ValueError as e:
+                print('Invalid datetime | amount!',e)
+
+        print(Add_Expense(Category,Amount,Date))
+            
+        for category,date,amount in expense_record:
+            print(f"{category:<10} {amount:<12} {date}")
