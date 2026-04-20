@@ -13,6 +13,9 @@ def Add_Expense(Category,Date,Amount):
     print(f"{'Category':<10} {'Amount':<12} {'Date':<10}")
     return '-'*32
 
+with open('expenses.txt', 'a') as f:
+    f.write(f"{'Category':<10} {'Amount':<12} {'Date':<10}\n")
+    f.write(f"{'-'*32}\n")
 
 def View_Expense(user_category):
     if not expense_record:
@@ -22,7 +25,6 @@ def View_Expense(user_category):
         print('-'*32)
         expense_list = '\n'.join([f'{c:<12} {a:<12} {d}' for c,d,a in expense_record if user_category == c])
         return expense_list
-    
 
 def Category_Wise_Total():
     if not expense_record:
@@ -84,3 +86,25 @@ while True:
             
         for category,date,amount in expense_record:
             print(f"{category:<10} {amount:<12} {date}")
+
+        with open('expenses.txt', 'a') as af:
+            af.write(f"{Category:<10} {Amount:<12} {Date}\n")
+
+    elif user_opt == '2':
+        user_category = input('Enter Category to view your expenses: ')
+        print(View_Expense(user_category))
+
+    elif user_opt == '3':
+        print(Category_Wise_Total())
+
+    elif user_opt == '4':
+        print(Total_Spending())
+
+    elif user_opt == '5':
+        print(Exit())
+        print('Thanks for visiting! Have a great day')
+        break
+    else:
+        print('Invalid Option! Please try again')
+
+                
