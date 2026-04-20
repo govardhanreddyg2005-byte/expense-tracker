@@ -37,3 +37,20 @@ def Category_Wise_Total():
     print('-'*22)
     expenses = '\n'.join([f'{category:<10} {amount:<12}' for category,amount in category_total.items()])
     return expenses
+
+
+def Total_Spending(): 
+    total_amount = 0
+    for c,d,a in expense_record:
+        total_amount+=a
+    return f"Total Spending -----> {total_amount}"
+
+def Exit():
+    if not expense_record:
+        return 'No records found! please try to add expenses!'
+    print('Your final expense record!')
+    print(f"{'Category':<10} {'Amount':<12} {'Date':<10}")
+    print('-'*32)
+
+    final_expense = '\n'.join([f"{category:<10} {amount:<12} {date:<10}" for category,amount,date in expense_record])
+    return final_expense
