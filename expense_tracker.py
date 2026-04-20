@@ -54,3 +54,20 @@ def Exit():
 
     final_expense = '\n'.join([f"{category:<10} {amount:<12} {date:<10}" for category,amount,date in expense_record])
     return final_expense
+
+class CategoryNameError(Exception):
+    pass
+
+while True:
+    print('Choose your options from following:\n 1.Add Expense\n','2.View Expense\n','3.Category Wise Total\n','4.Total Spending\n','5.Exit\n') 
+    user_opt = input('Enter option described above: ').strip()
+
+    if user_opt == '1':
+        while True:
+            try:
+                Category = input('Enter a valid Category Name: ').strip()
+                if any(ch.isdigit() for ch in Category):
+                    raise CategoryNameError('Category name must not contains digits! Try Again!')  #Handles Category Name
+                break
+            except CategoryNameError as e:
+                print(e)
