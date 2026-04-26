@@ -60,6 +60,8 @@ def Exit():
 class CategoryNameError(Exception):
     pass
 
+tdy = datetime.today().date()
+
 while True:
     print('Choose your options from following:\n 1.Add Expense\n','2.View Expense\n','3.Category Wise Total\n','4.Total Spending\n','5.Exit\n') 
     user_opt = input('Enter option described above: ').strip()
@@ -77,12 +79,17 @@ while True:
         while True:
             try:
                 Date = datetime.strftime(datetime.strptime(input('Enter date format like (YY-MM-DD):'),'%Y-%m-%d'),'%Y-%m-%d')  #Handles Datetime Format
+
+                if datetime.strptime(Date,'%Y-%m-%d').date() > tdy:
+                    print('❌ Oops! adding future dates impossible!')
+                    continue
+
                 Amount = int(input('Enter amount you spend:')) #Handles Amount
                 break
             except ValueError as e:
                 print('Invalid datetime | amount!',e)
 
-        print(Add_Expense(Category,Amount,Date))
+        print(Add_Expense(Category,Date,Amount))
             
         for category,date,amount in expense_record:
             print(f"{category:<10} {date:<12} {amount}")
