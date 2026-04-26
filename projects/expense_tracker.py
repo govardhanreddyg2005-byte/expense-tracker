@@ -9,21 +9,21 @@ def Add_Expense(Category,Date,Amount):
     Function Add_Expense that adds multiple
     Expenses
     '''
-    expense_record.append((Category,Amount,Date))
-    print(f"{'Category':<10} {'Amount':<12} {'Date':<10}")
+    expense_record.append((Category,Date,Amount))
+    print(f"{'Category':<10} {'Date':<12} {'Amount':<10}")
     return '-'*32
 
 with open('expenses.txt', 'a') as f:
-    f.write(f"{'Category':<10} {'Amount':<12} {'Date':<10}\n")
+    f.write(f"{'Category':<10} {'Date':<12} {'Amount':<10}\n")
     f.write(f"{'-'*32}\n")
 
 def View_Expense(user_category):
     if not expense_record:
         return 'Empty Record'
     else:
-        print(f"{'Category':<10} {'Amount':<12} {'Date':<10}")
+        print(f"{'Category':<10} {'Date':<12} {'Amount':<10}")
         print('-'*32)
-        expense_list = '\n'.join([f'{c:<12} {a:<12} {d}' for c,d,a in expense_record if user_category == c])
+        expense_list = '\n'.join([f'{c:<12} {d:<12} {a}' for c,d,a in expense_record if user_category == c])
         return expense_list
 
 
@@ -43,18 +43,18 @@ def Category_Wise_Total():
 
 def Total_Spending(): 
     total_amount = 0
-    for c,d,a in expense_record:
-        total_amount+=a
+    for c in expense_record:
+        total_amount+=c[2]
     return f"Total Spending -----> {total_amount}"
 
 def Exit():
     if not expense_record:
         return 'No records found! please try to add expenses!'
     print('Your final expense record!')
-    print(f"{'Category':<10} {'Amount':<12} {'Date':<10}")
+    print(f"{'Category':<10} {'Date':<12} {'Amount':<10}")
     print('-'*32)
 
-    final_expense = '\n'.join([f"{category:<10} {amount:<12} {date:<10}" for category,amount,date in expense_record])
+    final_expense = '\n'.join([f"{category:<10} {date:<12} {amount:<10}" for category,date,amount in expense_record])
     return final_expense
 
 class CategoryNameError(Exception):
@@ -85,10 +85,10 @@ while True:
         print(Add_Expense(Category,Amount,Date))
             
         for category,date,amount in expense_record:
-            print(f"{category:<10} {amount:<12} {date}")
+            print(f"{category:<10} {date:<12} {amount}")
 
         with open('expenses.txt', 'a') as af:
-            af.write(f"{Category:<10} {Amount:<12} {Date}\n")
+            af.write(f"{Category:<10} {date:<12} {amount}\n")
 
     elif user_opt == '2':
         user_category = input('Enter Category to view your expenses: ')
