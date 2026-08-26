@@ -1,5 +1,5 @@
 # Expense Tracker
-A simple expense tracker python project tracks users daily expenses.
+A simple expense tracker python project tracks our daily expenses.
 
 ## Features 
 -Add Expenses
