@@ -10,9 +10,5 @@ A simple expense tracker python project tracks our daily expenses.
 -Save File Content/File Handling
 
 # Run
-python expense_tracker.py 
-
-# Clone the repository
-```git clone https://github.com/govardhanreddyg2005-byte/expense-tracker.git
-```
+python expense_tracker.py
 
